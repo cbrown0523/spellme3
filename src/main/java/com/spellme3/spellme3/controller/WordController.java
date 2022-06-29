@@ -7,10 +7,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.autoconfigure.jdbc.DataSourceAutoConfiguration;
 import org.springframework.core.env.Environment;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.client.RestTemplate;
 
 import java.util.ArrayList;
@@ -76,5 +73,24 @@ public class WordController {
         }
     }
 
+    @GetMapping("/{def}")
+    public ResponseEntity<?> testLandex(RestTemplate restTemplate,
+                                        @RequestParam(value="text", required=true) String text ,
+                                        @PathVariable(value="def") String def)
+
+    {
+        //https://dictionary.yandex.net/api/v1/dicservice.json/lookup?key=dict.1.1.20220628T072602Z.aca428777f380b08.325558516315235d96697c2f6680e67bd2f48c02&lang=en-en&text=time
+        try {
+            String APIKEY = env.getProperty("apikeyYandex");
+            //String url = BASE_URL + word +"?key=" + APIKEYD;
+            String uri ="https://dictionary.yandex.net/api/v1/dicservice.json/lookup?key=" + APIKEY + "&lang=en-en&=text=" + text + def;
+            //String url = "https://dictionary.yandex.net/api/v1/dicservice.json/lookup?key=dict.1.1.20220628T072602Z.aca428777f380b08.325558516315235d96697c2f6680e67bd2f48c02&lang=en-en&text="
+            Object response = restTemplate.getForObject(uri, Object.class);
+            System.out.println(response);
+            return ResponseEntity.ok(response);
+        } catch (Exception e) {
+            return ResponseEntity.internalServerError().body(e.getMessage());
+        }
+    }
 
 }
