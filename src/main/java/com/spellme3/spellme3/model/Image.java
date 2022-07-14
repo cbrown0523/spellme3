@@ -1,52 +1,23 @@
 package com.spellme3.spellme3.model;
 
+import java.util.List;
+
 public class Image {
-    private int id;
-    private int height;
-    private int width;
-    private String original;
-    private String medium;
+
+    private List<Thumbnail> suggested_searches;
 
     public Image() {
     }
 
-    public int getId() {
-        return id;
+    public Image(List<Thumbnail> suggested_searches) {
+        this.suggested_searches = suggested_searches;
     }
 
-    public void setId(int id) {
-        this.id = id;
+    public List<Thumbnail> getSuggested_searches() {
+        return suggested_searches;
     }
 
-    public int getHeight() {
-        return height;
-    }
-
-    public void setHeight(int height) {
-        this.height = height;
-    }
-
-    public int getWidth() {
-        return width;
-    }
-
-    public void setWidth(int width) {
-        this.width = width;
-    }
-
-    public String getOriginal() {
-        return original;
-    }
-
-    public void setOriginal(String original) {
-        this.original = original;
-    }
-
-    public String getMedium() {
-        return medium;
-    }
-
-    public void setMedium(String medium) {
-        this.medium = medium;
+    public void setSuggested_searches(List<Thumbnail> suggested_searches) {
+        this.suggested_searches = suggested_searches;
     }
 }

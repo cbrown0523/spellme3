@@ -40,7 +40,7 @@ public class WordController {
 //        words = new ArrayList<>();
 //    }
 
-    @GetMapping("/word/{word}")
+    @GetMapping("/word1/{word}")
     public ResponseEntity<?> testGetWord(RestTemplate restTemplate,
                                          @PathVariable("word")String word
                                          )
