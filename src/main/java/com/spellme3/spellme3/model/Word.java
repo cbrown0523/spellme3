@@ -8,23 +8,29 @@ import java.util.ArrayList;
 //create model tha parses array of object rest te,plat
 //create multiple constructors for diff data
 //create 1, 5 data sets
+@Entity
 public class Word {
-    private String id;
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
     private String word;
+    private String text;
+
 
     public Word() {
     }
 
-    public Word(String id, String word) {
+    public Word(Long id, String word, String text) {
         this.id = id;
         this.word = word;
+        this.text = text;
     }
 
-    public String getId() {
+    public Long getId() {
         return id;
     }
 
-    public void setId(String id) {
+    public void setId(Long id) {
         this.id = id;
     }
 
@@ -34,6 +40,14 @@ public class Word {
 
     public void setWord(String word) {
         this.word = word;
+    }
+
+    public String getText() {
+        return text;
+    }
+
+    public void setText(String text) {
+        this.text = text;
     }
 }
 //[
