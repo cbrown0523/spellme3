@@ -15,8 +15,7 @@ public class Thumbnail {
     public Thumbnail() {
     }
 
-    public Thumbnail(long id, String thumbnail, String ijn, String chips) {
-        this.id = id;
+    public Thumbnail( String thumbnail, String ijn, String chips) {
         this.thumbnail = thumbnail;
         this.ijn = ijn;
         this.chips = chips;

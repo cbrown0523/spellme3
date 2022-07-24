@@ -9,10 +9,10 @@ import org.springframework.http.*;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.client.RestTemplate;
 
-
+@CrossOrigin
 @RestController
-@RequestMapping("image")
-
+@RequestMapping("/image")
+//Todo why all imagage ids zero
 
 public class ImageController {
     @Autowired

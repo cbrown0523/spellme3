@@ -2,20 +2,19 @@ package com.spellme3.spellme3.controller;
 
 import com.spellme3.spellme3.model.Term;
 import com.spellme3.spellme3.repositories.WordRepo;
-import com.spellme3.spellme3.repositories.WordRepository;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.client.RestTemplate;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
-
+import java.util.Optional;
+@CrossOrigin
 @RestController
 @RequestMapping("/api")
-public class WordController1 {
+public class TermController {
     @Autowired
     WordRepo wordRepo;
 
@@ -46,9 +45,40 @@ public Term addTerm(@RequestBody Term word){
 //        return words;
 //    }
 
-    @GetMapping("/{word}")
-    public ResponseEntity<List<Term>> getWords(@PathVariable String word){
+    @GetMapping("/")
+    public ResponseEntity<List<Term>> getAllWords(){
         List<Term> wordList = wordRepo.findAll();
+        return  new ResponseEntity(wordList, HttpStatus.CREATED.OK);
+    }
+    @GetMapping("/grade/firstgrade")
+    public ResponseEntity<List<Term>> getAllFgWords(){
+
+        List<Term> wordList = wordRepo.findAllByGrade("firstgrade");
+
+        return  new ResponseEntity(wordList, HttpStatus.CREATED.OK);
+    }
+    @GetMapping("/grade/pk")
+    public ResponseEntity<List<Term>> getAllPkWords(){
+
+        List<Term> wordList = wordRepo.findAllByGrade("prek");
+
+        return  new ResponseEntity(wordList, HttpStatus.CREATED.OK);
+    }
+    @GetMapping("/grade/k")
+    public ResponseEntity<List<Term>> getAllKWords(){
+
+        List<Term> wordList = wordRepo.findAllByGrade("kindergarten");
+
+        return  new ResponseEntity(wordList, HttpStatus.CREATED.OK);
+    }
+//    @GetMapping("/firstgrade")
+//    public ResponseEntity<?>getAllFg(@RequestBody List<Term> word){
+//        Object response = wordRepo.fin
+//    }
+
+    @GetMapping("/{id}")
+    public ResponseEntity<Term> getWords(@PathVariable Long id){
+        Optional<Term> wordList = wordRepo.findById(id);
         return  new ResponseEntity(wordList, HttpStatus.CREATED.OK);
     }
     @PostMapping("/")

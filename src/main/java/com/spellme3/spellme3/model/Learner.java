@@ -8,10 +8,10 @@ public class Learner {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String name;
-    private String age;
-    private String wordsAttempted;
-    private String wordsCorrect;
-    private String wordsAverage;
+    private String grade;
+    private Integer wordsAttempted;
+    private Integer wordsCorrect;
+    private Integer wordsAverage;
     //time stamp
 //    @OneToOne
 //    @JoinTable(
@@ -34,15 +34,13 @@ public class Learner {
     public Learner() {
     }
 
-    public Learner(Long id, String name, String age, String wordsAttempted, String wordsCorrect, String wordsAverage, AccountHolder admin, Word wordList) {
+    public Learner(Long id, String name, String grade, Integer wordsAttempted, Integer wordsCorrect, Integer wordsAverage) {
         this.id = id;
         this.name = name;
-        this.age = age;
+        this.grade = grade;
         this.wordsAttempted = wordsAttempted;
         this.wordsCorrect = wordsCorrect;
         this.wordsAverage = wordsAverage;
-//        this.admin = admin;
-//        this.wordList = wordList;
     }
 
     public Long getId() {
@@ -61,39 +59,38 @@ public class Learner {
         this.name = name;
     }
 
-    public String getAge() {
-        return age;
+    public String getGrade() {
+        return grade;
     }
 
-    public void setAge(String age) {
-        this.age = age;
+    public void setGrade(String grade) {
+        this.grade = grade;
     }
 
-    public String getWordsAttempted() {
+    public Integer getWordsAttempted() {
         return wordsAttempted;
     }
 
-    public void setWordsAttempted(String wordsAttempted) {
+    public void setWordsAttempted(Integer wordsAttempted) {
         this.wordsAttempted = wordsAttempted;
     }
 
-    public String getWordsCorrect() {
+    public Integer getWordsCorrect() {
         return wordsCorrect;
     }
 
-    public void setWordsCorrect(String wordsCorrect) {
+    public void setWordsCorrect(Integer wordsCorrect) {
         this.wordsCorrect = wordsCorrect;
     }
 
-    public String getWordsAverage() {
+    public Integer getWordsAverage() {
         return wordsAverage;
     }
 
-    public void setWordsAverage(String wordsAverage) {
+    public void setWordsAverage(Integer wordsAverage) {
         this.wordsAverage = wordsAverage;
     }
-
-//    public AccountHolder getAdmin() {
+    //    public AccountHolder getAdmin() {
 //        return admin;
 //    }
 //

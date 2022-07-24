@@ -13,7 +13,7 @@
 //import java.util.List;
 //
 //@SpringBootApplication(exclude = {DataSourceAutoConfiguration.class })
-//
+//@CrossOrigin
 //@RestController
 //@RequestMapping("/api")
 //public class WordController {

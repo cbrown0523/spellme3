@@ -1,6 +1,7 @@
 package com.spellme3.spellme3.controller;
 
 import com.spellme3.spellme3.model.Learner;
+import com.spellme3.spellme3.model.Term;
 import com.spellme3.spellme3.repositories.LearnerRepository;
 import org.apache.coyote.Response;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,28 +18,52 @@ import java.util.List;
 //private String wordsAttempted;
 //private String wordsCorrect;
 //private String wordsAverage;
+@CrossOrigin
+@RestController
+@RequestMapping("api/learner")
 public class LearnerController {
+
+
     @Autowired
     LearnerRepository learnerRepository;
 //    @PostMapping
 //    public ResponseEntity<?>createLearner( @RequestParam(value="text", required=true) String text
 //                                          @RequestParam Integer age)
+@PostMapping("/name")
+public ResponseEntity<?> createAName(@RequestBody Learner newName){
+    Learner learner = new Learner();
+    learner.setName((newName.getName()));
 
-@PostMapping("/learner")
+    learnerRepository.save(newName);
+    return new ResponseEntity<>(learner, HttpStatus.CREATED);
+}
+@PostMapping("/")
 public ResponseEntity<?> createName(@RequestBody Learner newName){
     Learner learner = new Learner();
     learner.setName((newName.getName()));
-    learner.setAge((newName.getAge()));
+    learner.setGrade((newName.getGrade()));
     learnerRepository.save(newName);
     return new ResponseEntity<>(learner, HttpStatus.CREATED);
     }
-    @GetMapping("/learner/all")
+    @GetMapping("/all")
         public List<Learner>getAllLearners(){
-            return learnerRepository.findAll();
+    return learnerRepository.findAll();
         }
-    @GetMapping("/learner/{id}")
+//Todo how to get individual fields ie the age of learner phil
+    //Todo Word controller not working anymore
+    //Todo mappoing database with joins and many to many etc
+
+        @GetMapping("/{id}")
     public ResponseEntity<List<Learner>>getAllLearners(@PathVariable Long id) {
         return new ResponseEntity(learnerRepository.findById(id), HttpStatus.OK);
     }
+    @DeleteMapping("/delete/{id}")
+    public String deleteById(@PathVariable Long id) {
+        Learner deleteLearner = learnerRepository.findById(id).get();
+        learnerRepository.delete(deleteLearner);
+        return "deleted learner with id: " + id;
+
+    }
+
     }
 

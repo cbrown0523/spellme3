@@ -8,6 +8,7 @@ public class AccountHolder {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String name;
+    private String password;
 
 //    @OneToMany(mappedBy = "admin" , fetch = FetchType.LAZY)
 //   private Learner learner ;
@@ -15,10 +16,19 @@ public class AccountHolder {
     public AccountHolder() {
     }
 
-    public AccountHolder(Long id, String name, Learner learner) {
+    public AccountHolder(Long id, String name, String password) {
         this.id = id;
         this.name = name;
-//        this.learner = learner;
+        this.password = password;
+       // this.learner = learner;
+    }
+
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
     }
 
     public Long getId() {
