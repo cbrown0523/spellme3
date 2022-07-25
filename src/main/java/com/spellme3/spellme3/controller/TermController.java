@@ -1,26 +1,24 @@
 package com.spellme3.spellme3.controller;
 
 import com.spellme3.spellme3.model.Term;
-import com.spellme3.spellme3.repositories.WordRepo;
+import com.spellme3.spellme3.repositories.TermRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-import org.springframework.web.client.RestTemplate;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 @CrossOrigin
 @RestController
-@RequestMapping("/api")
+@RequestMapping("/api/term")
 public class TermController {
     @Autowired
-    WordRepo wordRepo;
+    TermRepository termRepository;
 
     @PostMapping("/addWord")
 public Term addTerm(@RequestBody Term word){
-    return wordRepo.save(word);
+    return termRepository.save(word);
 }
 
 //    @PostMapping("/addAllWords")
@@ -47,29 +45,29 @@ public Term addTerm(@RequestBody Term word){
 
     @GetMapping("/")
     public ResponseEntity<List<Term>> getAllWords(){
-        List<Term> wordList = wordRepo.findAll();
+        List<Term> wordList = termRepository.findAll();
         return  new ResponseEntity(wordList, HttpStatus.CREATED.OK);
     }
     @GetMapping("/grade/firstgrade")
     public ResponseEntity<List<Term>> getAllFgWords(){
 
-        List<Term> wordList = wordRepo.findAllByGrade("firstgrade");
+        List<Term> wordList = termRepository.findAllByGrade("firstgrade");
 
         return  new ResponseEntity(wordList, HttpStatus.CREATED.OK);
     }
     @GetMapping("/grade/pk")
     public ResponseEntity<List<Term>> getAllPkWords(){
 
-        List<Term> wordList = wordRepo.findAllByGrade("prek");
+        List<Term> wordList = termRepository.findAllByGrade("prek");
 
         return  new ResponseEntity(wordList, HttpStatus.CREATED.OK);
     }
     @GetMapping("/grade/k")
     public ResponseEntity<List<Term>> getAllKWords(){
 
-        List<Term> wordList = wordRepo.findAllByGrade("kindergarten");
+        List<Term> wordList = termRepository.findAllByGrade("kindergarten");
 
-        return  new ResponseEntity(wordList, HttpStatus.CREATED.OK);
+        return new ResponseEntity(wordList, HttpStatus.CREATED.OK);
     }
 //    @GetMapping("/firstgrade")
 //    public ResponseEntity<?>getAllFg(@RequestBody List<Term> word){
@@ -78,26 +76,26 @@ public Term addTerm(@RequestBody Term word){
 
     @GetMapping("/{id}")
     public ResponseEntity<Term> getWords(@PathVariable Long id){
-        Optional<Term> wordList = wordRepo.findById(id);
+        Optional<Term> wordList = termRepository.findById(id);
         return  new ResponseEntity(wordList, HttpStatus.CREATED.OK);
     }
     @PostMapping("/")
     public ResponseEntity<String> SaveWord(@RequestBody Term term){
-        Term word = wordRepo.save(term);
+        Term word = termRepository.save(term);
         return new ResponseEntity("saved...", HttpStatus.OK );
     }
     @PutMapping("/update/{id}")
     public String updateWord(@PathVariable long id, @RequestBody Term term){
-        Term updateWord = wordRepo.findById(id).get();
+        Term updateWord = termRepository.findById(id).get();
         updateWord.setId(term.getId());
         updateWord.setTerm(term.getTerm());
-        wordRepo.save(updateWord);
+        termRepository.save(updateWord);
         return "updated...";
     }
     @DeleteMapping("/delete/{id}")
     public String deleteWord(@PathVariable("id")long id){
-        Term deleteWord = wordRepo.findById(id).get();
-        wordRepo.delete(deleteWord);
+        Term deleteWord = termRepository.findById(id).get();
+        termRepository.delete(deleteWord);
         return "deleted word with id: " + id;
     }
 };

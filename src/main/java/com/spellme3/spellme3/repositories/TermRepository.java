@@ -6,7 +6,7 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import java.util.List;
 import java.util.function.Supplier;
 
-public interface WordRepo extends JpaRepository<Term, Long> {
+public interface TermRepository extends JpaRepository<Term, Long> {
 List<Term> findAllByGrade(String grade);
 List<Term> deleteAllByGrade(String grade);
 }
