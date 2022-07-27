@@ -28,11 +28,22 @@ public class WordController {
 public ResponseEntity<?> getWord (RestTemplate restTemplate,
                               @PathVariable String word) {
 try {
-    String uri = "https://api.wordnik.com/v4/word.json/" + word + "/definitions?limit=1&partOfSpeech=noun&includeRelated=false&sourceDictionaries=webster&useCanonical=false&includeTags=false";
-  String APIKEYW = env.getProperty("api_key_wordnik");
+    System.out.println(0);
+    String uri = "https://api.wordnik.com/v4/word.json/" + word + "/definitions?limit=3&partOfSpeech=noun&includeRelated=false&sourceDictionaries=webster&useCanonical=false&includeTags=false";
+    System.out.println(1);
+
+    String APIKEYW = env.getProperty("api_key_wordnik");
+    System.out.println(2);
+
     HttpHeaders headers = new HttpHeaders();
-headers.set("api_key", "uinf0mz5u7p3s739hye43ygvzjwqmahtos2okgtofs0ydhd9a");
+    System.out.println(3);
+
+    headers.set("api_key", "uinf0mz5u7p3s739hye43ygvzjwqmahtos2okgtofs0ydhd9a");
+    System.out.println(4);
+
     HttpEntity request = new HttpEntity(headers);
+    System.out.println(5);
+
     return restTemplate.exchange(uri, HttpMethod.GET, request, Word[].class) ;
 
     //response.set("api_key", "uinf0mz5u7p3s739hye43ygvzjwqmahtos2okgtofs0ydhd9a");

@@ -27,7 +27,7 @@ public class AccountHolderController {
 public ResponseEntity<?> createUser(@RequestBody AccountHolder newUser){
    AccountHolder accountHolder = new AccountHolder();
     accountHolder.setName((newUser.getName()));
-    accountHolder.setPassword((newUser.getPassword()));
+    accountHolder.setEmail((newUser.getEmail()));
     aHRepository.save(newUser);
     return new ResponseEntity<>(accountHolder, HttpStatus.CREATED);
 }

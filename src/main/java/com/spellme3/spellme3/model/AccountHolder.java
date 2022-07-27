@@ -1,5 +1,7 @@
 package com.spellme3.spellme3.model;
 
+import com.fasterxml.jackson.annotation.JsonIncludeProperties;
+
 import javax.persistence.*;
 
 @Entity
@@ -8,27 +10,28 @@ public class AccountHolder {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String name;
-    private String password;
+    private String email;
 
-//    @OneToMany(mappedBy = "admin" , fetch = FetchType.LAZY)
-//   private Learner learner ;
+    @OneToMany(mappedBy = "admin" , fetch = FetchType.LAZY)
+    @JsonIncludeProperties("id")
+    private Learner learner ;
 
     public AccountHolder() {
     }
 
-    public AccountHolder(Long id, String name, String password) {
+    public AccountHolder(Long id, String name, String email, Learner learner) {
         this.id = id;
         this.name = name;
-        this.password = password;
-       // this.learner = learner;
+        this.email = email;
+        this.learner = learner;
     }
 
-    public String getPassword() {
-        return password;
+    public Learner getLearner() {
+        return learner;
     }
 
-    public void setPassword(String password) {
-        this.password = password;
+    public void setLearner(Learner learner) {
+        this.learner = learner;
     }
 
     public Long getId() {
@@ -47,7 +50,14 @@ public class AccountHolder {
         this.name = name;
     }
 
-//    public Learner getLearner() {
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+    //    public Learner getLearner() {
 //        return learner;
 //    }
 //

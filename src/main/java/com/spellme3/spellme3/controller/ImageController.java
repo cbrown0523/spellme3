@@ -26,7 +26,7 @@ public class ImageController {
         try {
             String clipArt = "clip%20art%20";
             String APIKEY = env.getProperty("api_key_serapi");
-            String url = BASE_URL_IMAGE + "&q=" + clipArt + query + "&tbm=isch" + "&api_key=" + APIKEY;
+            String url = BASE_URL_IMAGE + "&q=" + query + "&tbm=isch" + "&api_key=" + APIKEY;
 
             Image response = restTemplate.getForObject(url, Image.class);
             System.out.println(response);

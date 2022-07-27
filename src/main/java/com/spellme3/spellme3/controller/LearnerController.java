@@ -26,37 +26,42 @@ public class LearnerController {
 
     @Autowired
     LearnerRepository learnerRepository;
-//    @PostMapping
+
+    //    @PostMapping
 //    public ResponseEntity<?>createLearner( @RequestParam(value="text", required=true) String text
 //                                          @RequestParam Integer age)
-@PostMapping("/name")
-public ResponseEntity<?> createAName(@RequestBody Learner newName){
-    Learner learner = new Learner();
-    learner.setName((newName.getName()));
+    @PostMapping("/name")
+    public ResponseEntity<?> createAName(@RequestBody Learner newName) {
+        Learner learner = new Learner();
+        learner.setName((newName.getName()));
 
-    learnerRepository.save(newName);
-    return new ResponseEntity<>(learner, HttpStatus.CREATED);
-}
-@PostMapping("/")
-public ResponseEntity<?> createName(@RequestBody Learner newName){
-    Learner learner = new Learner();
-    learner.setName((newName.getName()));
-    learner.setGrade((newName.getGrade()));
-    learnerRepository.save(newName);
-    return new ResponseEntity<>(learner, HttpStatus.CREATED);
+        learnerRepository.save(newName);
+        return new ResponseEntity<>(learner, HttpStatus.CREATED);
     }
+
+    @PostMapping("/")
+    public ResponseEntity<?> createName(@RequestBody Learner newName) {
+        Learner learner = new Learner();
+        learner.setName((newName.getName()));
+        learner.setGrade((newName.getGrade()));
+        learner.setAdmin((newName.getAdmin()));
+        learnerRepository.save(newName);
+        return new ResponseEntity<>(learner, HttpStatus.CREATED);
+    }
+
     @GetMapping("/all")
-        public List<Learner>getAllLearners(){
-    return learnerRepository.findAll();
-        }
+    public List<Learner> getAllLearners() {
+        return learnerRepository.findAll();
+    }
 //Todo how to get individual fields ie the age of learner phil
     //Todo Word controller not working anymore
     //Todo mappoing database with joins and many to many etc
 
-        @GetMapping("/{id}")
-    public ResponseEntity<List<Learner>>getAllLearners(@PathVariable Long id) {
+    @GetMapping("/{id}")
+    public ResponseEntity<List<Learner>> getAllLearners(@PathVariable Long id) {
         return new ResponseEntity(learnerRepository.findById(id), HttpStatus.OK);
     }
+
     @DeleteMapping("/delete/{id}")
     public String deleteById(@PathVariable Long id) {
         Learner deleteLearner = learnerRepository.findById(id).get();
@@ -65,6 +70,12 @@ public ResponseEntity<?> createName(@RequestBody Learner newName){
 
     }
 
-
+    @DeleteMapping("/delete/all")
+    public ResponseEntity<String> deleteAll() {
+        learnerRepository.deleteAll();
+        return new ResponseEntity<>("Deleted All", HttpStatus.OK);
     }
+}
+
+
 
