@@ -12,27 +12,19 @@ public class AccountHolder {
     private String name;
     private String email;
 
-    @OneToMany(mappedBy = "admin" , fetch = FetchType.LAZY)
-    @JsonIncludeProperties("id")
-    private Learner learner ;
+//    @OneToMany(mappedBy = "admin" , fetch = FetchType.LAZY)
+//    @JsonIncludeProperties("id")
+//    private Learner learner ;
 
     public AccountHolder() {
     }
 
-    public AccountHolder(Long id, String name, String email, Learner learner) {
+    public AccountHolder(Long id, String name, String email) {
         this.id = id;
         this.name = name;
         this.email = email;
-        this.learner = learner;
     }
 
-    public Learner getLearner() {
-        return learner;
-    }
-
-    public void setLearner(Learner learner) {
-        this.learner = learner;
-    }
 
     public Long getId() {
         return id;

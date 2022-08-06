@@ -12,14 +12,14 @@ public class SpellMe {
     private Long id;
     private String sampleWord;
     private String word;
-    private Integer wordsAttempted;
+    private Boolean wordsAttempted;
     private Integer wordsCorrect;
     private Integer wordsAverage;
 
     public SpellMe() {
     }
 
-    public SpellMe(Long id, String sampleWord, String word, Integer wordsAttempted, Integer wordsCorrect, Integer wordsAverage) {
+    public SpellMe(Long id, String sampleWord, String word, Boolean wordsAttempted, Integer wordsCorrect, Integer wordsAverage) {
         this.id = id;
         this.sampleWord = sampleWord;
         this.word = word;
@@ -52,11 +52,11 @@ public class SpellMe {
         this.word = word;
     }
 
-    public Integer getWordsAttempted() {
+    public Boolean getWordsAttempted() {
         return wordsAttempted;
     }
 
-    public void setWordsAttempted(Integer wordsAttempted) {
+    public void setWordsAttempted(Boolean wordsAttempted) {
         this.wordsAttempted = wordsAttempted;
     }
 

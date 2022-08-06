@@ -8,5 +8,8 @@ import java.util.function.Supplier;
 
 public interface TermRepository extends JpaRepository<Term, Long> {
 List<Term> findAllByGrade(String grade);
+Term findByTerm(String term);
 List<Term> deleteAllByGrade(String grade);
+List<Term> deleteByTerm(String term);
+List<Term> deleteAllByTerm(String[] term);
 }

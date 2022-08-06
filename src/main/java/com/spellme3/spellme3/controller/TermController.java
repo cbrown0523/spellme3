@@ -98,6 +98,18 @@ public Term addTerm(@RequestBody Term word){
         termRepository.delete(deleteWord);
         return "deleted word with id: " + id;
     }
+    @DeleteMapping("/delete/word/{term}")
+    public String deleteByWordName(@PathVariable("term")String term){
+       Term aTerm = termRepository.findByTerm(term);
+    termRepository.delete(aTerm);
+        return "deleted word: " + term;
+    }
+    @DeleteMapping("/delete/words")
+    public String deleteWords(@RequestBody() String[] term){
+      termRepository.deleteAllByTerm(term);
+        return "deleted word: " + term;
+    }
 };
+
 
 

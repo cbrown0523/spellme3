@@ -41,16 +41,17 @@ public class LearnerController {
 
     @PostMapping("/")
     public ResponseEntity<?> createName(@RequestBody Learner newName) {
-        Learner learner = new Learner();
-        learner.setName((newName.getName()));
-        learner.setGrade((newName.getGrade()));
-        learner.setAdmin((newName.getAdmin()));
-        learnerRepository.save(newName);
+       // Learner learner = new Learner();
+        Learner learner = learnerRepository.save(newName);
+//        learner.setName((newName.getName()));
+//        learner.setGrade((newName.getGrade()));
+//        learner.setAdmin((newName.getAdmin()));
         return new ResponseEntity<>(learner, HttpStatus.CREATED);
     }
 
     @GetMapping("/all")
     public List<Learner> getAllLearners() {
+
         return learnerRepository.findAll();
     }
 //Todo how to get individual fields ie the age of learner phil

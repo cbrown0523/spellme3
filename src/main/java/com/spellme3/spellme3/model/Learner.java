@@ -15,13 +15,13 @@ public class Learner {
     private Integer wordsCorrect;
     private Integer wordsAverage;
     //time stamp
-    @OneToOne
-    @JoinTable(
-            name = "learner_table",
-            joinColumns = @JoinColumn(name = "learner_id"),
-            inverseJoinColumns = @JoinColumn(name = "admin_id")
-    )
-    public AccountHolder admin = new AccountHolder();
+//    @OneToOne
+//    @JoinTable(
+//            name = "learner_table",
+//            joinColumns = @JoinColumn(name = "learner_id"),
+//            inverseJoinColumns = @JoinColumn(name = "admin_id")
+//    )
+//    public AccountHolder admin = new AccountHolder();
 
     @OneToOne
     @JoinColumn(name = "wordList_id", referencedColumnName = "id")
@@ -36,15 +36,13 @@ public class Learner {
     public Learner() {
     }
 
-    public Learner(Long id, String name, String grade, Integer wordsAttempted, Integer wordsCorrect,
-                   Integer wordsAverage, AccountHolder admin, WordList wordList) {
+    public Learner(Long id, String name, String grade, Integer wordsAttempted, Integer wordsCorrect, Integer wordsAverage, WordList wordList) {
         this.id = id;
         this.name = name;
         this.grade = grade;
         this.wordsAttempted = wordsAttempted;
         this.wordsCorrect = wordsCorrect;
         this.wordsAverage = wordsAverage;
-        this.admin = admin;
         this.wordList = wordList;
     }
 
@@ -103,13 +101,5 @@ public class Learner {
     public void setWordsAverage(Integer wordsAverage) {
         this.wordsAverage = wordsAverage;
     }
-        public AccountHolder getAdmin() {
-        return admin;
-    }
-
-    public void setAdmin(AccountHolder admin) {
-        this.admin = admin;
-    }
-
 
 }
