@@ -25,8 +25,8 @@ public class WordListController {
         WordList wordList = wordListRepository.save(newWordList);
         return new ResponseEntity<>(wordList , HttpStatus.OK);
     }
-    @PostMapping("/{id}")
-    public ResponseEntity<?>createWordListByLearnerId(@RequestBody WordList newWordList){
+    @PostMapping("/learner/{id}")
+    public ResponseEntity<?>createWordListByLearnerId(@PathVariable Long id,@RequestBody WordList newWordList){
         WordList wordList = wordListRepository.save(newWordList);
         return new ResponseEntity<>(wordList , HttpStatus.OK);
     }
