@@ -8,5 +8,7 @@ import java.util.List;
 public interface LearnerRepository  extends JpaRepository<Learner, Long> {
 //    List<Learner> findAllWordsAttempted(Long id);
 //    List<Learner> findAllLearner(List Learner);
-//    List<Learner> deleteAllLearner(List Learner);
+    Learner deleteByName(String name);
+  Learner findByName(String name);
+
 }

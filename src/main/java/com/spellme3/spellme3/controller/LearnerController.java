@@ -70,6 +70,13 @@ public class LearnerController {
         return "deleted learner with id: " + id;
 
     }
+    @DeleteMapping("/delete/name/{name}")
+    public String deleteByName(@PathVariable("name")String name) {
+       Learner deleteALearner = learnerRepository.findByName(name);
+        learnerRepository.delete(deleteALearner);
+        return "deleted learner with name: " + name;
+
+    }
 
     @DeleteMapping("/delete/all")
     public ResponseEntity<String> deleteAll() {
