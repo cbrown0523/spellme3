@@ -4,8 +4,6 @@ public class SuggestedSearchesImage {
         private class Image{
                 private String thumbnail;
 
-                public Image() {
-                }
 
                 public Image(String thumbnail) {
                         this.thumbnail = thumbnail;
