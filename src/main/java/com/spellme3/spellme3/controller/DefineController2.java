@@ -17,7 +17,6 @@ import java.util.Optional;
 @RestController
 @RequestMapping("api/define")
 
-
 public class DefineController2 {
 
     @Autowired
@@ -30,7 +29,7 @@ public class DefineController2 {
 
 //difference between postForEntity and using repository.save
     //difference between requestBody and rest templatenj
-    //trying to retrieve a list of objects
+
     public ResponseEntity<Word[]> getWord(@PathVariable String word, RestTemplate restTemplate) {
         try {
             String url = "https://api.wordnik.com/v4/word.json/" + word + "/definitions?limit=2&partOfSpeech=noun"+

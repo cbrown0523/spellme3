@@ -1,11 +1,15 @@
 package com.spellme3.spellme3.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonIncludeProperties;
 
 import javax.persistence.*;
+import java.util.HashSet;
+import java.util.Set;
 
 @Entity
 public class Learner {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
@@ -14,44 +18,35 @@ public class Learner {
     private Integer wordsAttempted;
     private Integer wordsCorrect;
     private Integer wordsAverage;
-    //time stamp
-//    @OneToOne
-//    @JoinTable(
-//            name = "learner_table",
-//            joinColumns = @JoinColumn(name = "learner_id"),
-//            inverseJoinColumns = @JoinColumn(name = "admin_id")
-//    )
-//    public AccountHolder admin = new AccountHolder();
 
-    @OneToOne
-    @JoinColumn(name = "wordList_id", referencedColumnName = "id")
-    @JsonIncludeProperties("id")
-    private WordList wordList;
-
-//    @ManyToOne
-//    @JoinColumn(name = "admin_id", referencedColumnName = "id")
-//    private AccountHolder admin;
-
+    @OneToMany
+    @JoinTable(
+            name = "learner_spellMe",
+            inverseJoinColumns = @JoinColumn(name = "spellMe_id")
+    )
+    //@JsonIgnoreProperties("developers")
+    public Set<SpellMe> spellMes = new HashSet<>();
 
     public Learner() {
     }
 
-    public Learner(Long id, String name, String grade, Integer wordsAttempted, Integer wordsCorrect, Integer wordsAverage, WordList wordList) {
+    public Learner(Long id, String name, String grade, Integer wordsAttempted, Integer wordsCorrect,
+                   Integer wordsAverage, Set<SpellMe> spellMes) {
         this.id = id;
         this.name = name;
         this.grade = grade;
         this.wordsAttempted = wordsAttempted;
         this.wordsCorrect = wordsCorrect;
         this.wordsAverage = wordsAverage;
-        this.wordList = wordList;
+        this.spellMes = spellMes;
     }
 
-    public WordList getWordList() {
-        return wordList;
+    public Set<SpellMe> getSpellMes() {
+        return spellMes;
     }
 
-    public void setWordList(WordList wordList) {
-        this.wordList = wordList;
+    public void setSpellMes(Set<SpellMe> spellMes) {
+        this.spellMes = spellMes;
     }
 
     public Long getId() {

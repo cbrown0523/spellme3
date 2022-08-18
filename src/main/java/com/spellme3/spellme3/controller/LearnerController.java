@@ -12,51 +12,24 @@ import org.springframework.web.bind.annotation.*;
 import javax.lang.model.element.Name;
 import java.util.List;
 
-//private Long id;
-//private String name;
-//private String age;
-//private String wordsAttempted;
-//private String wordsCorrect;
-//private String wordsAverage;
 @CrossOrigin
 @RestController
 @RequestMapping("api/learner")
 public class LearnerController {
 
-
     @Autowired
     LearnerRepository learnerRepository;
 
-    //    @PostMapping
-//    public ResponseEntity<?>createLearner( @RequestParam(value="text", required=true) String text
-//                                          @RequestParam Integer age)
-    @PostMapping("/name")
-    public ResponseEntity<?> createAName(@RequestBody Learner newName) {
-        Learner learner = new Learner();
-        learner.setName((newName.getName()));
-
-        learnerRepository.save(newName);
-        return new ResponseEntity<>(learner, HttpStatus.CREATED);
-    }
-
     @PostMapping("/")
-    public ResponseEntity<?> createName(@RequestBody Learner newName) {
-       // Learner learner = new Learner();
-        Learner learner = learnerRepository.save(newName);
-//        learner.setName((newName.getName()));
-//        learner.setGrade((newName.getGrade()));
-//        learner.setAdmin((newName.getAdmin()));
+    public ResponseEntity<?> createName(@RequestBody Learner newLearner) {
+        Learner learner = learnerRepository.save(newLearner);
         return new ResponseEntity<>(learner, HttpStatus.CREATED);
     }
 
     @GetMapping("/all")
     public List<Learner> getAllLearners() {
-
         return learnerRepository.findAll();
     }
-//Todo how to get individual fields ie the age of learner phil
-    //Todo Word controller not working anymore
-    //Todo mappoing database with joins and many to many etc
 
     @GetMapping("/{id}")
     public ResponseEntity<List<Learner>> getAllLearners(@PathVariable Long id) {
@@ -68,14 +41,12 @@ public class LearnerController {
         Learner deleteLearner = learnerRepository.findById(id).get();
         learnerRepository.delete(deleteLearner);
         return "deleted learner with id: " + id;
-
     }
     @DeleteMapping("/delete/name/{name}")
     public String deleteByName(@PathVariable("name")String name) {
        Learner deleteALearner = learnerRepository.findByName(name);
         learnerRepository.delete(deleteALearner);
         return "deleted learner with name: " + name;
-
     }
 
     @DeleteMapping("/delete/all")

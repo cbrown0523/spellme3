@@ -1,8 +1,13 @@
 package com.spellme3.spellme3.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonIncludeProperties;
 
 import javax.persistence.*;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Set;
 
 @Entity
 public class AccountHolder {
@@ -12,19 +17,32 @@ public class AccountHolder {
     private String name;
     private String email;
 
-//    @OneToMany(mappedBy = "admin" , fetch = FetchType.LAZY)
+    @ManyToOne
+    @JoinColumn(name = "learner_id", referencedColumnName = "id")
 //    @JsonIncludeProperties("id")
-//    private Learner learner ;
+    private Learner learner;
+
+//    @OneToOne
+//    private WordList wordList;
+
 
     public AccountHolder() {
     }
 
-    public AccountHolder(Long id, String name, String email) {
+    public AccountHolder(Long id, String name, String email, Learner learner) {
         this.id = id;
         this.name = name;
         this.email = email;
+        this.learner = learner;
     }
 
+    public Learner getLearner() {
+        return learner;
+    }
+
+    public void setLearner(Learner learner) {
+        this.learner = learner;
+    }
 
     public Long getId() {
         return id;
@@ -49,11 +67,5 @@ public class AccountHolder {
     public void setEmail(String email) {
         this.email = email;
     }
-    //    public Learner getLearner() {
-//        return learner;
-//    }
-//
-//    public void setLearner(Learner learner) {
-//        this.learner = learner;
-//    }
+
 }

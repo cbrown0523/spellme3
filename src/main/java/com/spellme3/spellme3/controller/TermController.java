@@ -109,6 +109,12 @@ public Term addTerm(@RequestBody Term word){
       termRepository.deleteAllByTerm(term);
         return "deleted word: " + term;
     }
+
+    @GetMapping("/learner/{id}")
+    public ResponseEntity<Term> getWordsByLearnerId(@PathVariable Long id){
+        List<Term> wordList = termRepository.findAllByLearner_Id(id);
+        return  new ResponseEntity(wordList, HttpStatus.CREATED.OK);
+    }
 };
 
 
