@@ -20,6 +20,9 @@ public class AccountHolder {
     @ManyToOne
     @JoinColumn(name = "learner_id", referencedColumnName = "id")
 //    @JsonIncludeProperties("id")
+
+//    public Set<Learner> learners = new HashSet<>();
+//    or
     private Learner learner;
 
 //    @OneToOne

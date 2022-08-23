@@ -38,7 +38,6 @@ public class AccountHolderController {
     @GetMapping("/all")
     public List<AccountHolder> getAllUsers() {
         return aHRepository.findAll();
-
     }
 
     @GetMapping("/{id}")
@@ -52,9 +51,7 @@ public class AccountHolderController {
         if (updates.getName() != null) accountHolder.setName(updates.getName());
         if (updates.getEmail() != null) accountHolder.setEmail(updates.getEmail());
         if (updates.getLearner() != null) accountHolder.setLearner(updates.getLearner());
-
-
-        return aHRepository.save(accountHolder);
+            return aHRepository.save(accountHolder);
     }
     @DeleteMapping("/{id}")
     public ResponseEntity<String> deleteAccountHolder(@PathVariable Long id) {

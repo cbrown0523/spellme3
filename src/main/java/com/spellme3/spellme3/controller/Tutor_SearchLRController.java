@@ -13,7 +13,7 @@ import org.springframework.web.client.RestTemplate;
 public class Tutor_SearchLRController {
     @Autowired
     Environment env;
-    private String BASE_URL = "https://serpapi.com/search.json?q=tutor&location=";
+    private String BASE_URL = "https://serpapi.com/search.json?q=academictutors&location=";
 
     @GetMapping("/")
     public ResponseEntity<?> getTutor(RestTemplate restTemplate,
@@ -21,9 +21,9 @@ public class Tutor_SearchLRController {
         try {
             String APIKEY = env.getProperty("api_key_serapi");
             String ui = BASE_URL + query + "&hl=en&gl=us&google_domain=google.com&api_key=" + APIKEY;
-        String uri =  "https://serpapi.com/search.json?q=tutor&location="+ query + "&hl=en&gl=us&google_domain=google.com&api_key=a77b7364c5a8c2d239d919857f137f31c02b32f6652f34b54ee2f80f5ac5d28c";
-            String url = "https://serpapi.com/search.json?engine=google&q=tutor&location=" + query + "&api_key=" + APIKEY;
-            Tutor_SearchLR response = restTemplate.getForObject(url, Tutor_SearchLR.class);
+        String uri =  "https://serpapi.com/search.json?q=academictutor&location="+ query + "&hl=en&gl=us&google_domain=google.com&api_key=a77b7364c5a8c2d239d919857f137f31c02b32f6652f34b54ee2f80f5ac5d28c";
+            String url = "https://serpapi.com/search.json?engine=google&q=tutors&location=" + query + "&api_key=" + APIKEY;
+            Object response = restTemplate.getForObject(url, Object.class);
             System.out.println(response);
             return ResponseEntity.ok(response);
 
