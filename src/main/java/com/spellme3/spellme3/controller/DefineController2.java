@@ -10,9 +10,10 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.client.RestTemplate;
 
+import javax.transaction.Transactional;
 import java.util.List;
 import java.util.Optional;
-
+@Transactional
 @CrossOrigin
 @RestController
 @RequestMapping("api/define")

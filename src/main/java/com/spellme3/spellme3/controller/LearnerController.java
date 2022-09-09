@@ -10,8 +10,10 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import javax.lang.model.element.Name;
+import javax.transaction.Transactional;
 import java.util.List;
 
+@Transactional
 @CrossOrigin
 @RestController
 @RequestMapping("api/learner")
@@ -42,10 +44,12 @@ public class LearnerController {
         learnerRepository.delete(deleteLearner);
         return "deleted learner with id: " + id;
     }
+
     @DeleteMapping("/delete/name/{name}")
-    public String deleteByName(@PathVariable("name")String name) {
-       Learner deleteALearner = learnerRepository.findByName(name);
-        learnerRepository.delete(deleteALearner);
+    public String deleteByName(@PathVariable String name) {
+     // Learner deleteALearner = learnerRepository.findByName(name);
+        learnerRepository.deleteByName(name);
+       // learnerRepository.delete(deleteALearner);
         return "deleted learner with name: " + name;
     }
 
