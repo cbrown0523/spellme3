@@ -35,6 +35,11 @@ public class WordListController {
         List<WordList> wordList = wordListRepository.findAllByLearner_Id(id);
         return  new ResponseEntity(wordList, HttpStatus.OK);
     }
+    @GetMapping("/")
+    public ResponseEntity<WordList> getWordList(){
+        List<WordList> wordList = wordListRepository.findAll();
+        return  new ResponseEntity(wordList, HttpStatus.OK);
+    }
 
 
 }

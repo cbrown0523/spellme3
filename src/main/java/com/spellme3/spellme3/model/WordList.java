@@ -12,6 +12,7 @@ public class WordList {
     private String word;
     private String grade;
 //many to one is mappedBy = "learner" , fetch = FetchType.LAZY) not needed
+
     @ManyToOne
     @JoinColumn(name = "learner_id", referencedColumnName = "id")
     @JsonIncludeProperties("id")

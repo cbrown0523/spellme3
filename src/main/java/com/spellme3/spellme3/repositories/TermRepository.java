@@ -1,6 +1,7 @@
 package com.spellme3.spellme3.repositories;
 
 import com.spellme3.spellme3.model.Term;
+import com.spellme3.spellme3.model.WordList;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 import java.util.List;
@@ -12,4 +13,5 @@ Term findByTerm(String term);
 List<Term> deleteAllByGrade(String grade);
 List<Term> deleteByTerm(String term);
 List<Term> deleteAllByTerm(String[] term);
+List<Term> findAllByLearner_Id(Long id);
 }

@@ -7,8 +7,11 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import javax.transaction.Transactional;
 import java.util.List;
 import java.util.Optional;
+
+@Transactional
 @CrossOrigin
 @RestController
 @RequestMapping("/api/term")
@@ -108,6 +111,12 @@ public Term addTerm(@RequestBody Term word){
     public String deleteWords(@RequestBody() String[] term){
       termRepository.deleteAllByTerm(term);
         return "deleted word: " + term;
+    }
+
+    @GetMapping("/learner/{id}")
+    public ResponseEntity<Term> getWordsByLearnerId(@PathVariable Long id){
+        List<Term> wordList = termRepository.findAllByLearner_Id(id);
+        return  new ResponseEntity(wordList, HttpStatus.CREATED.OK);
     }
 };
 

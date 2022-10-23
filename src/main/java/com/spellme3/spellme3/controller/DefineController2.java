@@ -10,13 +10,13 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.client.RestTemplate;
 
+import javax.transaction.Transactional;
 import java.util.List;
 import java.util.Optional;
-
+@Transactional
 @CrossOrigin
 @RestController
 @RequestMapping("api/define")
-
 
 public class DefineController2 {
 
@@ -30,7 +30,7 @@ public class DefineController2 {
 
 //difference between postForEntity and using repository.save
     //difference between requestBody and rest templatenj
-    //trying to retrieve a list of objects
+
     public ResponseEntity<Word[]> getWord(@PathVariable String word, RestTemplate restTemplate) {
         try {
             String url = "https://api.wordnik.com/v4/word.json/" + word + "/definitions?limit=2&partOfSpeech=noun"+
