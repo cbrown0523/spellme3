@@ -21,9 +21,9 @@ public class Tutor_SearchLRController {
         try {
             String APIKEY = env.getProperty("api_key_serapi");
             String ui = BASE_URL + query + "&hl=en&gl=us&google_domain=google.com&api_key=" + APIKEY;
-        String uri =  "https://serpapi.com/search.json?q=academictutor&location="+ query + "&hl=en&gl=us&google_domain=google.com&api_key=a77b7364c5a8c2d239d919857f137f31c02b32f6652f34b54ee2f80f5ac5d28c";
+        String uri =  "https://serpapi.com/search.json?q=academictutor&location="+ query + "&hl=en&gl=us&google_domain=google.com&api_key=64f72c0e57e2f8e18aeb5b6d3bc9ec80bf09d8ab6c981cd7ad92128ac1d5a07e";
             String url = "https://serpapi.com/search.json?engine=google&q=tutors&location=" + query + "&api_key=" + APIKEY;
-            Object response = restTemplate.getForObject(url, Object.class);
+            Object response = restTemplate.getForObject(uri, Object.class);
             System.out.println(response);
             return ResponseEntity.ok(response);
 
