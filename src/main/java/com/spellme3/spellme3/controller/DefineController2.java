@@ -33,9 +33,9 @@ public class DefineController2 {
 
     public ResponseEntity<Word[]> getWord(@PathVariable String word, RestTemplate restTemplate) {
         try {
-            String url = "https://api.wordnik.com/v4/word.json/" + word + "/definitions?limit=2&partOfSpeech=noun"+
-                    "&includeRelated=false&sourceDictionaries=webster&useCanonical=false&includeTags=false&" +
-                    "api_key=" + env.getProperty("api_key_wordnik");
+            String url = "https://api.wordnik.com/v4/words.json/randomWords?hasDictionaryDef=true&maxCorpusCount="+
+                    "-1&minDictionaryCount=1&maxDictionaryCount=-1&minLength=5&maxLength=-1&limit=500&api_key=" +
+                    env.getProperty("api_key_wordnik");
            Word[] response = restTemplate.getForObject(url, Word[].class);
 
             //return ResponseEntity.ok(response);
@@ -43,7 +43,8 @@ public class DefineController2 {
 
         } catch (Exception e) {
             return new ResponseEntity(e.getMessage(), HttpStatus.INTERNAL_SERVER_ERROR);
-        }}
+        }
+    }
 
     @GetMapping("/a/{word}")
 
